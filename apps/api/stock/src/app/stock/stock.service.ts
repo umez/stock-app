@@ -4,6 +4,7 @@ import axios, { AxiosError } from 'axios';
 
 import { from, lastValueFrom, timer } from 'rxjs';
 import { mergeMap, map, retry, toArray, catchError } from 'rxjs/operators';
+import { StockModel } from './stock.interface';
 
 @Injectable()
 export class StockService {
@@ -39,15 +40,16 @@ export class StockService {
 
     if (this.state === 'OPEN') {
       console.warn('Circuit OPEN - skipping request');
+      const cached = this.cache.get(symbol);
 
-      return from([
-        {
-          symbol,
-          current: null,
-          high: null,
-          low: null
-        }
-      ]);
+        return from([
+          cached ?? {
+            symbol,
+            current: null,
+            high: null,
+            low: null
+          }
+        ]);
     }
 
     return from(
@@ -56,20 +58,31 @@ export class StockService {
       })
     ).pipe(
       map(res => {
+
+        // console.log({symbol: symbol, data: res.data})
+
+         const data = new StockModel(
+          symbol,
+          res.data.c,
+          res.data.d,
+          res.data.dp,
+          res.data.h,
+          res.data.l,
+          res.data.o,
+          res.data.pc,
+          res.data.t
+        );
+
+        // store last successful value
+        this.cache.set(symbol, data);
         this.onSuccess();
 
-        return {
-          symbol,
-          current: res.data.c,
-          high: res.data.h,
-          low: res.data.l
-        };
+        return data
       }),
 
       retry({
         count: 3,
         delay: (error: AxiosError, retryCount) => {
-
 
           const isNetworkError = !error.response;
           const status = error.response?.status;
@@ -106,7 +119,7 @@ export class StockService {
       this.successCount++;
 
       if (this.successCount >= this.successThreshold) {
-        console.log('Circuit CLOSED again');
+        // console.log('Circuit CLOSED again');
 
         this.state = 'CLOSED';
         this.failureCount = 0;
@@ -133,4 +146,19 @@ export class StockService {
       }, this.timeout);
     }
   }
+
+  // Cache the last emmitted data
+  private cache = new Map<string, {
+    symbol: string;
+    current: number | null;
+    change: number | null;
+    percentChange: number | null;
+    high: number | null;
+    low: number | null;
+    open: number | null;
+    previousClose: number | null;
+    timestamp: number | null
+
+
+  }>();
 }
