@@ -38,29 +38,26 @@
     </div>
   </div>
 
-  <hr mr-my2 />
-  <mb-info-block flex-fullwidth label="52 Week range">
-    <div flex-row flex-space-between gap2 mr-mt1>
-      <div class="daily" flex-fullwidth pd-px2 pd-py1>
-        <mb-info-block
-          flex-fullwidth
-          label="52w high"
-          name="{{stock().high | currency}} "
-        ></mb-info-block>
-      </div>
+  <div class="week-range">
+    <hr mr-my2 />
+    <mb-info-block flex-fullwidth label="52 Week range">
+      <div flex-row flex-space-between gap2 mr-mt1>
+        <div class="daily" flex-fullwidth pd-px2 pd-py1>
+          <mb-info-block
+            flex-fullwidth
+            label="52w high"
+            name="{{stock().high | currency}} "
+          ></mb-info-block>
+        </div>
 
-      <div class="daily" flex-fullwidth pd-px2 pd-py1>
-        <mb-info-block
-          flex-fullwidth
-          label="52w low"
-          name="{{stock().low | currency}}"
-        ></mb-info-block>
+        <div class="daily" flex-fullwidth pd-px2 pd-py1>
+          <mb-info-block
+            flex-fullwidth
+            label="52w low"
+            name="{{stock().low | currency}}"
+          ></mb-info-block>
+        </div>
       </div>
-    </div>
-  </mb-info-block>
-
-  <!-- <div class="week-range">
-      <div class="stat"><span class="label">52w high</span><span>{{ stock.week52High | currency }}</span></div>
-    <div class="stat"><span class="label">52w low</span><span>{{ stock.week52Low | currency }}</span></div>
-    </div> -->
+    </mb-info-block>
+  </div>
 </mb-card>
