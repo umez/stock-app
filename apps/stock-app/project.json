@@ -20,7 +20,10 @@
             "input": "apps/stock-app/public"
           }
         ],
-        "styles": ["apps/stock-app/src/styles.scss"]
+        "styles": [
+          "libs/ui/src/lib/styles/index.scss",
+          "apps/stock-app/src/styles.scss"
+        ]
       },
       "configurations": {
         "production": {

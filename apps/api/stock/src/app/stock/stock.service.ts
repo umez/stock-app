@@ -59,6 +59,12 @@ export class StockService {
     ).pipe(
       map(res => {
 
+        if(symbol === 'AAPL') {
+          console.log(
+            {symbol, data: res.data}
+          )
+        }
+
         // console.log({symbol: symbol, data: res.data})
 
          const data = new StockModel(
@@ -106,8 +112,13 @@ export class StockService {
           {
             symbol,
             current: null,
+            change:  null,
+            percentChange: null,
             high: null,
-            low: null
+            low:  null,
+            open:  null,
+            previousClose: null,
+            timestamp:  null
           }
         ]);
       })

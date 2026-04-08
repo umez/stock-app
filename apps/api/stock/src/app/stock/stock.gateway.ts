@@ -18,9 +18,9 @@ export class StockGateway implements OnGatewayInit {
     let counter = 0
     setInterval(async () => {
       const data = await this.stockService.getStocks();
-      console.log({data, counter})
+      // console.log({data, counter})
       counter++
       this.server.emit('stocks', data);
-    }, 4000);
+    }, 2000);
   }
 }

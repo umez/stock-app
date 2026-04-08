@@ -1,0 +1,6 @@
+<div class="grid">
+  @for(stock of sortedStocks(); track $index) {
+    <stock-card [stock]="stock" (toggle)="toggle(stock)" />
+  }
+
+</div>

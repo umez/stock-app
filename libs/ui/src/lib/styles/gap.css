@@ -1,0 +1,27 @@
+[gap0], .gap0 {
+  gap: var(--d0)!important
+}
+
+[gap1], .gap1 {
+  gap: var(--d1)!important
+}
+
+[gap2], .gap2 {
+  gap: var(--d2)!important
+}
+
+[gap3], .gap3 {
+  gap: var(--d3)!important
+}
+
+[gap4], .gap4 {
+  gap: var(--d4)!important
+}
+
+[gap5], .gap5 {
+  gap: var(--d5)!important
+}
+
+[gap6], .gap6 {
+  gap: var(--d6)!important
+}

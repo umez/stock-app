@@ -1,0 +1,22 @@
+<div flex-row gap2>
+  <div flex-column flex-fullwidth>
+    @if(!!headline()) {
+      <h2
+        mr-m0
+        class="mb-header-headline"
+        [innerHTML]="headline()"
+      ></h2>
+    }
+
+    @if (subline()) {
+      <h4
+        mr-m0
+        class="mb-header-subline"
+        [innerHTML]="subline()"
+      ></h4>
+    }
+  </div>
+  <div class="mb-header-right-block">
+      <ng-content></ng-content>
+  </div>
+</div>

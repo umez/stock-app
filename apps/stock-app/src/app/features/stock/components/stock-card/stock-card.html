@@ -1,0 +1,66 @@
+<mb-card
+  [subline]="stock().symbol"
+  [headline]="stock().name"
+  [class.up]="stock().percentChange > 0"
+  [class.down]="stock().percentChange <= 0"
+  [class.off]="!stock().active"
+  (click)="toggle.emit(stock())"
+>
+  <mb-header-right-block>
+    <mb-toggle />
+  </mb-header-right-block>
+  <!-- <div class="card-top">
+    <div class="toggle" [class.on]="stock().active"></div>
+  </div> -->
+
+  <mb-info-block flex-fullwidth label="Current price">
+    <div flex-row gap2 flex-align-center>
+      <span class="price">{{ stock().current | currency }}</span>
+      <mb-badge>{{ stock().percentChange }}%</mb-badge>
+    </div>
+  </mb-info-block>
+
+  <div flex-row flex-space-between gap2 mr-mt3>
+    <div class="daily" flex-fullwidth pd-px2 pd-py1>
+      <mb-info-block
+        flex-fullwidth
+        label="Daily high"
+        name="{{stock().high | currency}} "
+      ></mb-info-block>
+    </div>
+
+    <div class="daily" flex-fullwidth pd-px2 pd-py1>
+      <mb-info-block
+        flex-fullwidth
+        label="Daily low"
+        name="{{stock().low | currency}}"
+      ></mb-info-block>
+    </div>
+  </div>
+
+  <hr mr-my2 />
+  <mb-info-block flex-fullwidth label="52 Week range">
+    <div flex-row flex-space-between gap2 mr-mt1>
+      <div class="daily" flex-fullwidth pd-px2 pd-py1>
+        <mb-info-block
+          flex-fullwidth
+          label="52w high"
+          name="{{stock().high | currency}} "
+        ></mb-info-block>
+      </div>
+
+      <div class="daily" flex-fullwidth pd-px2 pd-py1>
+        <mb-info-block
+          flex-fullwidth
+          label="52w low"
+          name="{{stock().low | currency}}"
+        ></mb-info-block>
+      </div>
+    </div>
+  </mb-info-block>
+
+  <!-- <div class="week-range">
+      <div class="stat"><span class="label">52w high</span><span>{{ stock.week52High | currency }}</span></div>
+    <div class="stat"><span class="label">52w low</span><span>{{ stock.week52Low | currency }}</span></div>
+    </div> -->
+</mb-card>
