@@ -21,6 +21,6 @@ export class StockGateway implements OnGatewayInit {
       // console.log({data, counter})
       counter++
       this.server.emit('stocks', data);
-    }, 2000);
+    }, 5000);
   }
 }

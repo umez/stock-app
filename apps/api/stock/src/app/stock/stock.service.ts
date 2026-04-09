@@ -8,7 +8,7 @@ import { StockModel } from './stock.interface';
 
 @Injectable()
 export class StockService {
-  private symbols = ['AAPL', 'GOOGL', 'MSFT', 'TSLA'];
+  private symbols = ['AAPL', 'GOOGL', 'MSFT', 'TSLA', 'FB'];
 
   private failureCount = 0;
   private successCount = 0;

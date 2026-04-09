@@ -1,13 +1,10 @@
 import { Route } from '@angular/router';
+import { Layout } from './layout/layout';
 
 export const appRoutes: Route[] = [
   {
     path: '',
-    redirectTo: 'stock',
-    pathMatch: 'full',
+    loadChildren: () => import('./layout/layout.routes').then((m) => m.routes)
   },
-  {
-    path: 'stock',
-    loadComponent: () => import('./features/stock/page').then((m) => m.Page),
-  },
+
 ];

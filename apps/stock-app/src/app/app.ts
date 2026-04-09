@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Page } from './features/stock/page';
+import { Layout } from './layout/layout';
 
 @Component({
   imports: [RouterModule],

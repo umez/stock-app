@@ -10,6 +10,12 @@
   --grey30 : #B3B3B3;
   --grey20 : #CCCCCC;
   --grey10 : #E6E6E6;
+
+  --toggle-bg-checked: #00aef9;
+  --toggle-bg-checked-btn: #023750;
+  --toggle-bg-unchecked: #b8ccd4;
+  --toggle-bg-unchecked-btn: var(--grey60);
+  --inactive-element: var(--grey40);
 }
 
 

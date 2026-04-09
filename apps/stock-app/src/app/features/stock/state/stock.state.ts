@@ -1,6 +1,6 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
 import { StockWsService } from './stock-ws.service';
-import { debounce, debounceTime, map, share, shareReplay } from 'rxjs';
+import { debounceTime, map, shareReplay, throttleTime } from 'rxjs';
 import { Stock, STOCK_NAME_MAP } from '../models';
 
 @Injectable({ providedIn: 'root' })
@@ -14,7 +14,7 @@ export class StockStore {
   connect() {
     this.stockWsService.connectSocket();
     return this.stocksWs$.pipe(
-      debounceTime(3000),
+      throttleTime(3000),
       shareReplay(),
       map(res =>  this.update(res))
     )

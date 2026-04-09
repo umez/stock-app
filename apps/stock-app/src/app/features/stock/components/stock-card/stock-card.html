@@ -4,10 +4,9 @@
   [class.up]="stock().percentChange > 0"
   [class.down]="stock().percentChange <= 0"
   [class.off]="!stock().active"
-  (click)="toggle.emit(stock())"
 >
   <mb-header-right-block>
-    <mb-toggle />
+    <mb-toggle [(value)]="stock().active" size="sm" (toggled)="toggle.emit(stock())" />
   </mb-header-right-block>
   <!-- <div class="card-top">
     <div class="toggle" [class.on]="stock().active"></div>
@@ -38,8 +37,7 @@
     </div>
   </div>
 
-  <div class="week-range">
-    <hr mr-my2 />
+  <div class="week-range" mr-mt4>
     <mb-info-block flex-fullwidth label="52 Week range">
       <div flex-row flex-space-between gap2 mr-mt1>
         <div class="daily" flex-fullwidth pd-px2 pd-py1>
