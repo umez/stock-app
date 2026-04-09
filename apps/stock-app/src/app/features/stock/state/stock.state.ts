@@ -1,9 +1,9 @@
-import { Injectable, signal, computed, inject } from '@angular/core';
+import { Injectable, signal, inject } from '@angular/core';
 import { StockWsService } from './stock-ws.service';
-import { debounceTime, map, shareReplay, throttleTime } from 'rxjs';
+import {  map, shareReplay, throttleTime } from 'rxjs';
 import { Stock, STOCK_NAME_MAP } from '../models';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class StockStore {
 
   private stockWsService = inject(StockWsService);

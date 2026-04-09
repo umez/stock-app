@@ -4,12 +4,14 @@ import { Component, computed, effect, inject, OnDestroy, OnInit } from "@angular
 import { StockStore } from "../../state/stock.state";
 import { Stock } from '../../models';
 import { StockCard } from '../stock-card/stock-card';
+import { StockWsService } from '../../state/stock-ws.service';
 
 @Component({
   selector: 'stock-list',
   templateUrl: './stock-list.html',
   styleUrl: './stock-list.scss',
-  imports: [StockCard]
+  imports: [StockCard],
+  providers: [StockWsService, StockStore]
 
 })
 export class StockList implements OnDestroy {

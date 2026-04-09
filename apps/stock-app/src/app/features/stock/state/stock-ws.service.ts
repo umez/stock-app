@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { BehaviorSubject } from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class StockWsService {
   private socket!: Socket;
   private subject = new BehaviorSubject<any[]>([]);
