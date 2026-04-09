@@ -16,6 +16,9 @@
   --toggle-bg-unchecked: #b8ccd4;
   --toggle-bg-unchecked-btn: var(--grey60);
   --inactive-element: var(--grey40);
+  --color-border-secondary: var(--grey30);
+  --color-text-secondary: var(--grey40);
+  --color-background-secondary: var(--grey40);
 }
 
 

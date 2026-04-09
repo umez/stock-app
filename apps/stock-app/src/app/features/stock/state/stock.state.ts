@@ -1,6 +1,6 @@
 
 import { Injectable, signal, inject, computed } from '@angular/core';
-import { interval, map } from 'rxjs';
+import { debounceTime, interval, map, shareReplay } from 'rxjs';
 import { Stock, STOCK_NAME_MAP } from '../models';
 import { StockWsService } from './stock-ws.service';
 import { environment } from 'apps/stock-app/src/environments/environment';
@@ -16,9 +16,10 @@ export class StockStore {
 
   private readonly stocksState = signal<Stock[]>([])
 
-  private useMockData = signal<boolean>(environment.USE_MOCK);
+  public useMockData = signal<boolean>(environment.USE_MOCK);
 
-  public readonly isConnected = computed(() => this.stockWsService.connectionStatus())
+  public readonly isConnected = computed(() => this.stockWsService.connectionStatus() || this.useMockData());
+
 
   connect() {
 
@@ -32,12 +33,15 @@ export class StockStore {
 
       this._stocks.set(MOCK_STOCKS)
       return interval(5000).pipe(
+        shareReplay(1),
         map(() => this.generateMockUpdates()),
         map((res: any) => this.update(res))
       );
     } else {
       this.stockWsService.connectSocket();
       return this.stocksWs$.pipe(
+        shareReplay(1),
+        debounceTime(4000),
         map(res => this.update(res))
       )
     }

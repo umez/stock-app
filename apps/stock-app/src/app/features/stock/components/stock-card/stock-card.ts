@@ -21,7 +21,6 @@ export class StockCard{
   toggle = output<Stock>()
 
   addClass() {
-    console.log(this.stock())
     this.stock()?.activate
   }
 

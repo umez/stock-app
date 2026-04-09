@@ -1,6 +1,6 @@
 export const environment = {
 
-  USE_MOCK : true,
+  USE_MOCK : false,
   SOCKET_URL : 'http://localhost:3000'
 
 };

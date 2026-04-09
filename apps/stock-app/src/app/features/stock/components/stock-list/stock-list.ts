@@ -20,7 +20,7 @@ export class StockList implements OnDestroy {
 
   readonly stockList = toSignal(this.stockStore.connect(), { initialValue: [] });
 
-  readonly isConnected = computed(() => this.stockStore.isConnected());
+  readonly isConnected = computed(() => this.stockStore.isConnected() );
 
   readonly sortedStocks = computed(() => {
     return [...this.stockList() ?? []].sort(
@@ -34,6 +34,11 @@ export class StockList implements OnDestroy {
   });
 
 
+  // constructor(){
+  //   effect(() => {
+  //     console.log(this.isConnected())
+  //   })
+  // }
 
   toggle(stock: Stock) {
     this.stockStore.toggle(stock)
