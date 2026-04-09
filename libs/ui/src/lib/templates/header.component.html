@@ -1,4 +1,4 @@
-<div flex-row gap2>
+<div flex-row gap2 flex-align-center>
   <div flex-column flex-fullwidth>
     @if(!!headline()) {
       <h2
@@ -16,7 +16,7 @@
       ></h4>
     }
   </div>
-  <div class="mb-header-right-block">
+  <div flex-column >
       <ng-content></ng-content>
   </div>
 </div>

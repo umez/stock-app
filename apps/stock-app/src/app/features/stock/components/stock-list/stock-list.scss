@@ -6,8 +6,15 @@
   gap: 16px;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 920px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 100%;
+    min-width: 100%;
+  }
+}
 
+@media (max-width: 520px) {
   .grid {
     grid-template-columns: 1fr;
     max-width: 100%;

@@ -5,10 +5,11 @@ mb-card {
   transition: background 0.3s,
   border-color 0.3s;
   cursor: pointer;
-  max-width: 300px;
+  max-width: 315px;
   &.up    { background: #EAF3DE; border-color: #3B6D11; }
   &.down  { background: #FCEBEB; border-color: #A32D2D; }
   &.off   { background: #f5f5f5; opacity: 0.7; filter: grayscale(0.4); }
+  min-width: 300px;
 }
 
 @media (max-width: 540px) {

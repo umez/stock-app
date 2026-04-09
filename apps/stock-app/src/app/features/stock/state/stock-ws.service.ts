@@ -1,30 +1,33 @@
-import { Injectable } from '@angular/core';
+
+import { Injectable, signal } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'apps/stock-app/src/environments/environment';
 
 @Injectable()
 export class StockWsService {
   private socket!: Socket;
-  private subject = new BehaviorSubject<any[]>([]);
-  private connectionStatus = new BehaviorSubject<boolean>(false);
   private retryCount = 0;
   private maxRetries = 30;
-  connection$ = this.connectionStatus.asObservable();
+
+  connectionStatus = signal<boolean>(false);
+
+  private subject = new BehaviorSubject<any[]>([]);
   stocks$ = this.subject.asObservable();
 
   connectSocket() {
-    this.socket = io('http://localhost:3000', {
+    this.socket = io(environment.SOCKET_URL, {
       reconnection: true
     });
     this.socket.on('connect', () => {
       console.log('connected')
       this.retryCount = 0;
-      this.connectionStatus.next(true);
+      this.connectionStatus.set(true);
     });
 
     this.socket.on('disconnect', () => {
       console.log('disconnected')
-      this.connectionStatus.next(false);
+      this.connectionStatus.set(false);
     });
 
     this.socket.on('stocks', (data) => {

@@ -6,11 +6,8 @@
   [class.off]="!stock().active"
 >
   <mb-header-right-block>
-    <mb-toggle [(value)]="stock().active" size="sm" (toggled)="toggle.emit(stock())" />
+    <mb-toggle [(value)]="stock().active!" size="sm" (toggled)="toggle.emit(stock())" />
   </mb-header-right-block>
-  <!-- <div class="card-top">
-    <div class="toggle" [class.on]="stock().active"></div>
-  </div> -->
 
   <mb-info-block flex-fullwidth label="Current price">
     <div flex-row gap2 flex-align-center>

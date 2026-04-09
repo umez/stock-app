@@ -9,7 +9,10 @@ import { InfoBlockComponent, MbCard, BadgeComponent, HeaderRightBlockDirective, 
   selector: 'stock-card',
   templateUrl: './stock-card.html',
   styleUrl: './stock-card.scss',
-  imports: [CurrencyPipe, MbCard, InfoBlockComponent, BadgeComponent, HeaderRightBlockDirective, ToggleComponent]
+  imports: [CurrencyPipe, MbCard, InfoBlockComponent, BadgeComponent, HeaderRightBlockDirective, ToggleComponent],
+  host: {
+    '[class.activate]': 'addClass()',
+  }
 })
 export class StockCard{
 
@@ -17,13 +20,15 @@ export class StockCard{
 
   toggle = output<Stock>()
 
-  constructor() {
-    effect(() => {
-      console.log(this.stock())
-    })
+  addClass() {
+    console.log(this.stock())
+    this.stock()?.activate
   }
 
-
-
+  // constructor() {
+  //   effect(() => {
+  //     // console.log(this.stock())
+  //   })
+  // }
 
 }

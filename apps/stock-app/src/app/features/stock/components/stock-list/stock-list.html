@@ -1,6 +1,14 @@
 <div class="grid">
-  @for(stock of sortedStocks(); track $index) {
-    <stock-card [stock]="stock" (toggle)="toggle(stock)" />
-  }
+  @if(isConnected()) {
+    @if(dataLoaded()) {
+      @for(stock of sortedStocks(); track $index) {
+        <stock-card [stock]="stock" (toggle)="toggle(stock)" />
+      }
+    } @else  {
+      LOADING.....
+    }
 
+  } @else {
+    Not able to connect to server, please try again after sometime!
+  }
 </div>
